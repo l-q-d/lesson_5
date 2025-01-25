@@ -121,44 +121,5 @@ def main():
             "charsheet.svg", "cards\\{card_num}.svg".format(card_num=[card]), context
         )
 
-
-if __name__ == "__main__":
-    main()
-
-
-def main():
-    os.makedirs("cards", mode=0o777, exist_ok=False)
-    for card in range(10):
-
-        for match in skills:
-            skill = ""
-            match_list = list(match)
-            for char in match_list:
-                skill += alphabet[char]
-            runic_skills.append(skill)
-
-        fake = Faker("ru_RU")
-        r_skills = random.sample(runic_skills, 3)
-
-        context = {
-            "first_name": fake.first_name(),
-            "last_name": fake.last_name(),
-            "job": fake.job(),
-            "town": fake.city(),
-            "strength": random.randint(3, 18),
-            "agility": random.randint(3, 18),
-            "endurance": random.randint(3, 18),
-            "intelligence": random.randint(3, 18),
-            "luck": random.randint(3, 18),
-            "skill_1": r_skills[0],
-            "skill_2": r_skills[1],
-            "skill_3": r_skills[2],
-        }
-
-        file_operations.render_template(
-            "charsheet.svg", "cards\\{card_num}.svg".format(card_num=[card]), context
-        )
-
-
 if __name__ == "__main__":
     main()
