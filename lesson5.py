@@ -3,9 +3,9 @@ import file_operations
 from faker import Faker
 import random
 
-runic_skills = []
+RUNIC_SKILLS = []
 
-skills = [
+SKILLS = [
     "Стремительный прыжок",
     "Электрический выстрел",
     "Ледяной удар",
@@ -16,7 +16,7 @@ skills = [
     "Огненный заряд",
 ]
 
-alphabet = {
+ALPHABET = {
     "а": "а͠",
     "б": "б̋",
     "в": "в͒͠",
@@ -92,15 +92,15 @@ def main():
     os.makedirs("cards", mode=0o777, exist_ok=False)
     for card in range(10):
 
-        for match in skills:
+        for match in SKILLS:
             skill = ""
             match_list = list(match)
             for char in match_list:
-                skill += alphabet[char]
-            runic_skills.append(skill)
+                skill += ALPHABET[char]
+            RUNIC_SKILLS.append(skill)
 
         fake = Faker("ru_RU")
-        r_skills = random.sample(runic_skills, 3)
+        r_skills = random.sample(RUNIC_SKILLS, 3)
 
         context = {
             "first_name": fake.first_name(),
@@ -120,6 +120,7 @@ def main():
         file_operations.render_template(
             "charsheet.svg", "cards\\{card_num}.svg".format(card_num=[card]), context
         )
+
 
 if __name__ == "__main__":
     main()
